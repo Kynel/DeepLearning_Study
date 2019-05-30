@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
-import tensorflow.contrib.eager as tfe  # error in VsCode but works!!
+#import tensorflow.contrib.eager as tfe  # error in VsCode but works!!
 
 tf.enable_eager_execution()
 tf.set_random_seed(777)  # for reproducibility
@@ -69,7 +69,8 @@ def grad(hypothesis, features, labels):
 EPOCHS = 1001
 
 for step in range(EPOCHS):
-    for features, labels in tfe.Iterator(dataset):  # error in VsCode but works!!
+    #for features, labels in tfe.Iterator(dataset):  # error in VsCode but works!!
+    for features, labels in tf.contrib.eager.Iterator(dataset):   
         grads = grad(logistic_regression(features), features, labels)
         optimizer.apply_gradients(grads_and_vars = zip(grads, [W, b]))
         if step % 100 == 0:
