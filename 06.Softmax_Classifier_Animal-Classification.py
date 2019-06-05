@@ -6,9 +6,13 @@ tfe = tf.contrib.eager
 
 print(tf.__version__)
 
-xy = np.loadtxt('C:/Users/unlea/OneDrive/Desktop/DeepLearning_Study-master/DeepLearning_Study/data-04-zoo.csv', delimiter = ',', dtype = np.int32)
-x_data = xy[:, 0:-1]
-y_data = xy[:, [-1]]
+# x-> float32, y-> int32
+# tf.one_hot function needs int input and tf.matmul function needs float input.
+# so saperate x, y data
+x = np.loadtxt('C:/Users/unlea/OneDrive/Desktop/DeepLearning_Study-master/DeepLearning_Study/data-04-zoo.csv', delimiter = ',', dtype = np.float32)
+y = np.loadtxt('C:/Users/unlea/OneDrive/Desktop/DeepLearning_Study-master/DeepLearning_Study/data-04-zoo.csv', delimiter = ',', dtype = np.int32)
+x_data = x[:, 0:-1]
+y_data = y[:, [-1]]
 
 NB_CLASSES = 7  # 0 ~ 6
 
